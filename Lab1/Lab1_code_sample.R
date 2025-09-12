@@ -211,6 +211,32 @@ hist(ECO, y, prob = TRUE)
 lines(density(ECO, na.rm=TRUE, bw = 2.))
 rug(ECO)
 
+# FOR SPI
+hist(SPI, x, prob=TRUE) 
+
+x1 <- seq(0, 100, 10)
+
+d1 <- dnorm(x1, mean=40, sd=10)
+lines(x1, d1, col="red", lwd=2)
+
+d2 <- dnorm(x1, mean=64, sd=10)
+lines(x1, d2, col="blue", lwd=2)
+
+lines(x1, 0.5*d1 + 0.5*d2, col="darkgreen", lwd=2)
+
+# FOR ECO
+hist(ECO, x, prob=TRUE) 
+
+x1 <- seq(15, 90, 2)
+
+d1 <- dnorm(x1, mean=40, sd=10)
+lines(x1, d1, col="red", lwd=2)
+
+d2 <- dnorm(x1, mean=64, sd=10)
+lines(x1, d2, col="blue", lwd=2)
+
+lines(x1, 0.5*d1 + 0.5*d2, col="darkgreen", lwd=2)
+
 # ECDF Plots
 plot(ecdf(SPI), do.points=FALSE, verticals=TRUE) 
 plot(ecdf(ECO), do.points=FALSE, verticals=TRUE) 
@@ -254,4 +280,4 @@ ks.test(SPI,ECO)
 wilcox.test(SPI,ECO)
 
 var.test(SPI,ECO)
-t.test(SPI,ECO)
+t.test(SPI,)
