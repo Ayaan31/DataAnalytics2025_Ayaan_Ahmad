@@ -242,14 +242,16 @@ hist(ECO)
 # The p-value is less than 0.05 for SPI, meaning not normally distributed
 shapiro.test(SPI)
 
+# The p-value is greater than 0.05 for SPI, meaning normally distributed
 shapiro.test(ECO)
 
-ad.test(x)
-ad.test(y)
+# Same result for both of these as the shapiro
+ad.test(SPI)
+ad.test(ECO)
 
-ks.test(x,y)
+ks.test(SPI,ECO)
 
-wilcox.test(x,y)
+wilcox.test(SPI,ECO)
 
-var.test(x,y)
-t.test(x,y)
+var.test(SPI,ECO)
+t.test(SPI,ECO)
