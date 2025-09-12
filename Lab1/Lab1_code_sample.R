@@ -1,5 +1,7 @@
 library(readr)
 library(EnvStats)
+library(stats)
+library(nortest)
 
 # STUDENT COMMENT: My file structure is different 
 # set working directory (relative path)
@@ -174,4 +176,80 @@ wilcox.test(x,y)
 var.test(x,y)
 t.test(x,y)
 
+# EXERCISE 2:
 
+# Using SPI and ECO as the other two variables
+SPI <- epi.data$SPI.new
+SPI
+
+ECO <- epi.data$ECO.new
+ECO
+
+summary(SPI)
+summary(ECO)
+
+boxplot(SPI, ECO, names = c("SPI", "ECO"))
+
+# Histogram for SPI
+hist(SPI)
+
+x <- seq(0, 100, 4)
+
+hist(SPI, x, prob = TRUE)
+
+lines(density(SPI, na.rm = TRUE, bw = 3.))
+
+rug(SPI)
+
+# Histogram for ECO
+hist(ECO)
+range(ECO, na.rm = TRUE)
+
+y <- seq(15, 90, 2)
+hist(ECO, y, prob = TRUE)
+
+lines(density(ECO, na.rm=TRUE, bw = 2.))
+rug(ECO)
+
+# ECDF Plots
+plot(ecdf(SPI), do.points=FALSE, verticals=TRUE) 
+plot(ecdf(ECO), do.points=FALSE, verticals=TRUE) 
+
+# print quantile-quantile plot for variable with theoretical normal distribuion
+qqnorm(EPI); qqline(EPI)
+
+
+# print quantile-quantile plot for random numbers from a normal distribution with theoretical normal distribution
+x <- rnorm(500)
+qqnorm(x); qqline(x)
+
+
+# print quantile-quantile plot for variable with any theoretical distribution
+qqplot(rnorm(180), SPI.new, xlab = "Q-Q plot for norm dsn") 
+qqline(SPI.new)
+
+# print quantile-quantile plot for 2 variables
+qqplot(SPI, ECO, xlab = "Q-Q plot for SPI vs ECO") 
+
+qqplot(x, SPI, xlab = "Q-Q plot for SPI vs ECO") 
+qqline(SPI)
+
+
+# Normality test
+hist(SPI)
+hist(ECO)
+
+# The p-value is less than 0.05 for SPI, meaning not normally distributed
+shapiro.test(SPI)
+
+shapiro.test(ECO)
+
+ad.test(x)
+ad.test(y)
+
+ks.test(x,y)
+
+wilcox.test(x,y)
+
+var.test(x,y)
+t.test(x,y)
