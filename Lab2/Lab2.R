@@ -57,9 +57,6 @@ ggplot(NY_data.compl, aes(x = LogProperty, y = LogPrice)) +
        y = "Price")
 
 
-
-
-
 ### MODEL 2: PROPRTYSQFT + BEDS ###
 summary(model2)
 ggplot(NY_data.compl, aes(x = LogBeds, y = LogPrice)) +
